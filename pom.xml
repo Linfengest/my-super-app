@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+<!--    项目start-->
+    <groupId>org.example</groupId>
+    <artifactId>my-super-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+<!--    项目end-->
+
+<!--    基础父级依赖start-->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.3.RELEASE</version>
+    </parent>
+<!--  基础父级依赖end-->
+
+    <dependencies>
+<!--        基础子级依赖start-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>2.0.2.RELEASE</version>
+    </dependency>
+<!--        基础子级依赖end-->
+
+    </dependencies>
+
+<!--        build生成包start-->
+    <build>
+        <resources>
+
+<!--            配置文件地址设置start-->
+            <resource>
+                <filtering>true</filtering>
+                <directory>src/main/resources/${profiles.active}</directory>
+            </resource>
+<!--            配置文件地址设置end-->
+
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.2.RELEASE</version>
+                <!--                添加运行的主类，使得可以直接以jar运行start-->
+                <configuration>
+                    <mainClass>com.App</mainClass>
+                </configuration>
+                <!--                添加运行的主类，使得可以直接以jar运行end-->
+
+            </plugin>
+        </plugins>
+
+    </build>
+<!--        build生成包end-->
+
+
+<!--    环境配置设置start-->
+    <profiles>
+        <profile>
+            <!-- 本地开发环境 -->
+            <id>dev</id>
+            <properties>
+                <profiles.active>dev</profiles.active>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+
+        <profile>
+            <!-- 测试环境 -->
+            <id>test</id>
+            <properties>
+                <profiles.active>test</profiles.active>
+            </properties>
+        </profile>
+
+        <profile>
+            <!-- 生产环境 -->
+            <id>prod</id>
+            <properties>
+                <profiles.active>prod</profiles.active>
+            </properties>
+        </profile>
+
+    </profiles>
+<!--    环境配置设置end-->
+
+
+<!--    ali镜像仓库地址,快速下载jar依赖包 start-->
+    <repositories>
+        <repository>
+            <id>central</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <!-- 是否开启发布版构件下载 -->
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <!-- 是否开启快照版构件下载 -->
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+<!--    ali镜像仓库地址,快速下载jar依赖包 end-->
+
+</project>
