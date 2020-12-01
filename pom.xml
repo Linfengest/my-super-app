@@ -37,6 +37,13 @@
         <!--lomboc 用于@data get set方法  end-->
 
 
+        <!--        测试依赖 start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--        测试依赖 end-->
     </dependencies>
 
 <!--        build生成包start-->
