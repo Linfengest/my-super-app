@@ -1,6 +1,9 @@
 package com.entity;
 
-public class Data {
+import lombok.Data;
+
+@Data
+public class Data1 {
 
     private int id;
 
